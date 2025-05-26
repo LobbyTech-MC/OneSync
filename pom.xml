@@ -12,7 +12,7 @@
     <name>OneSync</name>
 
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <detools.version>0.1.4-SNAPSHOT</detools.version>
     </properties>
@@ -22,7 +22,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>3.6.0</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
@@ -31,7 +31,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>3.6.0</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -117,12 +117,6 @@
         </dependency>
 
         <dependency>
-            <groupId>io.github.hello09x</groupId>
-            <artifactId>devtools-command</artifactId>
-            <version>0.1.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.github.tanyaofei.devtools</groupId>
             <artifactId>devtools-core</artifactId>
             <version>${detools.version}</version>
@@ -149,7 +143,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.28</version>
+            <version>1.18.36</version>
             <scope>provided</scope>
         </dependency>
 
@@ -163,7 +157,7 @@
         <dependency>
             <groupId>com.comphenix.protocol</groupId>
             <artifactId>ProtocolLib</artifactId>
-            <version>5.2.0-SNAPSHOT</version>
+            <version>5.3.0</version>
             <scope>provided</scope>
         </dependency>
 

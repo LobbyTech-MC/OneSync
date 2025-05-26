@@ -1,21 +1,26 @@
 package io.github.hello09x.onesync.config;
 
-import com.google.inject.Inject;
-import com.google.inject.Provides;
-import com.google.inject.Singleton;
-import io.github.hello09x.devtools.core.config.PluginConfig;
-import io.github.hello09x.onesync.repository.constant.SnapshotCause;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import java.util.Collections;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.jetbrains.annotations.NotNull;
 
-import java.time.Duration;
-import java.util.*;
-import java.util.stream.Collectors;
+import com.google.inject.Inject;
+import com.google.inject.Provides;
+import com.google.inject.Singleton;
+
+import io.github.hello09x.devtools.core.config.PluginConfig;
+import io.github.hello09x.onesync.repository.constant.SnapshotCause;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @ToString
@@ -31,8 +36,8 @@ public class OneSyncConfig extends PluginConfig {
 
     @Inject
     public OneSyncConfig(@NotNull Plugin plugin) {
-        super(plugin, false);
-        this.reload0();
+        super(plugin);
+        this.reload();
     }
 
     @Provides
