@@ -120,7 +120,7 @@ public class ProfileSnapshotHandler extends CacheableSnapshotHandler<ProfileSnap
         if (config.getHealth() == Enabled.TRUE) {
             Optional.ofNullable(snapshot.health()).ifPresent(player::setHealth);
             Optional.ofNullable(snapshot.maxHealth()).ifPresent(maxHealth -> {
-                Optional.ofNullable(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).ifPresent(attr -> attr.setBaseValue(maxHealth));
+                Optional.ofNullable(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).ifPresent(attr -> player.getAttribute(Attribute.GENERIC_MAX_HEALTH));
             });
         }
         if (config.getFood() == Enabled.TRUE) {
