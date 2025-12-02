@@ -51,7 +51,7 @@ public class VaultSnapshotRepository {
                     (
                         snapshot_id bigint   not null comment '快照 ID'
                             primary key,
-                        player_id   char(36) not null comment '玩家 ID',
+                        player_id   char(64) not null comment '玩家 ID',
                         balance     double   not null comment '余额'
                     );
                     """);

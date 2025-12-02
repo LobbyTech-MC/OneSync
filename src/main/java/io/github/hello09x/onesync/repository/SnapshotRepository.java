@@ -49,26 +49,25 @@ public class SnapshotRepository {
     }
 
     public @NotNull List<Snapshot> selectByPlayerId(@NotNull UUID playerId) {
-        var sql = "select * from `snapshot` where player_id = ?";
-        return jdbc.query(sql, rowMapper, playerId.toString());
+        var sql = "select * from `snapshot` where player_id = \'" + playerId.toString() + "\'";
+        return jdbc.query(sql, rowMapper);
     }
 
     public @Nullable Snapshot selectLatestByPlayerId(@NotNull UUID playerId) {
-        var sql = "select * from `snapshot` where player_id = ? order by created_at desc, id desc limit 1";
-        return jdbc.queryForObject(sql, rowMapper, playerId.toString());
+        var sql = "select * from `snapshot` where player_id = \'" + playerId.toString() + "\'" + " order by created_at desc, id desc limit 1";
+        return jdbc.queryForObject(sql, rowMapper);
     }
 
     public @NotNull Page<Snapshot> selectPageByPlayerId(int page, int size, @NotNull UUID playerId) {
-        var countSql = "select count(*) from `snapshot` where player_id = ?";
-        var total = Objects.requireNonNull(jdbc.queryForObject(countSql, IntegerRowMapper.instance, playerId.toString()));
+        var countSql = "select count(*) from `snapshot` where player_id = \'" + playerId.toString() + "\'";
+        var total = Objects.requireNonNull(jdbc.queryForObject(countSql, IntegerRowMapper.instance));
         int offset = (page - 1) * size;
 
         var records = jdbc.query(
-                "select * from `snapshot` where player_id = ? order by created_at desc, id desc limit ?, ?",
+                "select * from `snapshot` where player_id = \'" + playerId.toString() + "\'" + " order by created_at desc, id desc limit ?, ?",
                 rowMapper,
                 offset,
-                size,
-                playerId.toString()
+                size
         );
 
         return new Page<>(

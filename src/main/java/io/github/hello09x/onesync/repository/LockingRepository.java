@@ -25,35 +25,35 @@ public class LockingRepository {
     }
 
     public @Nullable Locking selectByPlayerId(@NotNull UUID playerId) {
-        return jdbc.queryForObject("select * from locking where player_id = ?", rowMapper, playerId.toString());
+        return jdbc.queryForObject("select * from locking where player_id = \'" + playerId.toString() + "\'", rowMapper);
     }
 
     @CanIgnoreReturnValue
     public int insertOrUpdate(@NotNull UUID playerId, @NotNull String serverId, boolean lock) {
         var sql = lock
-                ? "replace into `locking` (player_id, server_id) values (?, ?)"
-                : "delete from `locking` where player_id = ? and server_id = ?";
+                ? "replace into `locking` (player_id, server_id) values (\'" + playerId.toString() + "\', \'" + serverId + "\')"
+                : "delete from `locking` where player_id = \'" + playerId.toString() + "\' and server_id = \'" + serverId + "\'";
 
-        return jdbc.update(sql, playerId.toString(), serverId);
+        return jdbc.update(sql);
     }
 
     @CanIgnoreReturnValue
     public int updateServerId(@NotNull String from, @NotNull String to) {
-        var sql = "update `locking` set server_id = ? where server_id = ?";
+        var sql = "update `locking` set server_id = \'" + to + "\'" + " where server_id = \'" + from + "\'";
 
-        return jdbc.update(sql, to, from);
+        return jdbc.update(sql);
     }
 
     @CanIgnoreReturnValue
     public int deleteByPlayerId(@NotNull UUID playerId) {
-        var sql = "delete from locking where player_id = ?";
-        return jdbc.update(sql, playerId.toString());
+        var sql = "delete from locking where player_id = \'"  + playerId.toString()  + "\'";
+        return jdbc.update(sql);
     }
 
     @CanIgnoreReturnValue
     public int deleteByServerId(@NotNull String serverId) {
-        var sql = "delete from locking where server_id = ?";
-        return jdbc.update(sql, serverId);
+        var sql = "delete from locking where server_id = \'" + serverId + "\'";
+        return jdbc.update(sql);
     }
 
     @CanIgnoreReturnValue
