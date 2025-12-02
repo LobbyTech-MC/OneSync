@@ -91,7 +91,7 @@ public class SnapshotRepository {
             return 0;
         }
 
-        return jdbc.update("delete from `snapshot` where id in (?)", StringUtils.join(",", ids));
+        return jdbc.update("delete from `snapshot` where id in (?)", StringUtils.join(ids, ","));
     }
 
     protected void initTables() {

@@ -56,7 +56,7 @@ public class InventorySnapshotRepository {
         if (snapshotIds.isEmpty()) {
             return 0;
         }
-        return jdbc.update("delete from inventory_snapshot where snapshot_id in (?)", StringUtils.join(",", snapshotIds));
+        return jdbc.update("delete from inventory_snapshot where snapshot_id in (?)", StringUtils.join(snapshotIds, ","));
     }
 
     @CanIgnoreReturnValue

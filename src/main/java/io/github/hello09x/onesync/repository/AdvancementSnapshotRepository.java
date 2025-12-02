@@ -38,7 +38,7 @@ public class AdvancementSnapshotRepository {
         if (ids.isEmpty()) {
             return 0;
         }
-        return jdbc.update("delete from advancement_snapshot where snapshot_id in (?)", StringUtils.join(",", ids));
+        return jdbc.update("delete from advancement_snapshot where snapshot_id in (?)", StringUtils.join(ids, ","));
     }
 
     @CanIgnoreReturnValue

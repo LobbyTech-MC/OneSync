@@ -40,7 +40,7 @@ public class PotionEffectSnapshotRepository {
 
     @CanIgnoreReturnValue
     public int deleteBySnapshotIds(@NotNull List<Long> snapshotIdList) {
-        return jdbc.update("delete from potion_effect_snapshot where snapshot_id in (?)", StringUtils.join(",", snapshotIdList));
+        return jdbc.update("delete from potion_effect_snapshot where snapshot_id in (?)", StringUtils.join(snapshotIdList, ","));
     }
 
     protected void initTables() {
