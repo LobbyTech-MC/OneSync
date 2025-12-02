@@ -56,7 +56,7 @@ public class EnderChestSnapshotRepository {
         if (snapshotIds.isEmpty()) {
             return 0;
         }
-        return jdbc.update("delete from ender_chest_snapshot where snapshot_id in (?)", StringUtils.join(snapshotIds, ","));
+        return jdbc.update("delete from ender_chest_snapshot where snapshot_id in (?)", StringUtils.join(",", snapshotIds));
     }
 
     protected void initTables() {

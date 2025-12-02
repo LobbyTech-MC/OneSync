@@ -42,7 +42,7 @@ public class PDCSnapshotRepository {
         if (snapshotIds.isEmpty()) {
             return 0;
         }
-        return jdbc.update("delete from pdc_snapshot where snapshot_id in (?)", StringUtils.join(snapshotIds, ","));
+        return jdbc.update("delete from pdc_snapshot where snapshot_id in (?)", StringUtils.join(",", snapshotIds));
     }
 
     protected void initTables() {
